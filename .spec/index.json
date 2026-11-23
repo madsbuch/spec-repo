@@ -1,0 +1,6 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Shared specs",
+  "summary": "Parts of a spec that several products share.",
+  "description": "Each folder here is a shared part. A product copies it into its own spec, at the same path, and records which commit it copied."
+}

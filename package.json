@@ -1,0 +1,11 @@
+{
+  "name": "spec-repo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}

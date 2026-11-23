@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Sync",
+  "summary": "Peer-to-peer sync between the devices of one collection, over the local network.",
+  "description": "A collection is the data a set of devices share; each product that uses this part says what its collection is. The devices sync directly with each other on the local network, without a server.",
+  "stories": [
+    {
+      "id": "US-SYN-1",
+      "as": "someone who uses the app on more than one device",
+      "want": "the same data on each of them",
+      "soThat": "I can pick up wherever I left off",
+      "requirements": [
+        "#SYN-1",
+        "#SYN-2",
+        "#SYN-11",
+        "#SYN-12"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "SYN-1",
+      "text": "Two instances of the app on the same local network can sync their databases with each other."
+    },
+    {
+      "id": "SYN-4",
+      "text": "No data of the collection passes through a server during sync."
+    },
+    {
+      "id": "SYN-10",
+      "text": "Every table syncs unless it is explicitly local to the device.",
+      "related": [
+        "sync/triggers"
+      ]
+    },
+    {
+      "id": "SYN-15",
+      "text": "Settings that belong to one device (sync bookmarks, caches) are never synced."
+    },
+    {
+      "id": "SYN-16",
+      "text": "A database restored from an older copy is detected at startup, or at its first sync if its marker was restored with it, and then takes a new device id and syncs from scratch."
+    },
+    {
+      "id": "SYN-17",
+      "text": "On Android, sync also runs while the app is closed."
+    },
+    {
+      "id": "SYN-19",
+      "text": "Development and release builds never sync with each other."
+    }
+  ]
+}

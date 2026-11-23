@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Pairing",
+  "summary": "How a new device joins a collection.",
+  "order": 2,
+  "requirements": [
+    {
+      "id": "SYN-9",
+      "text": "A new device joins by scanning a pairing QR code, which works for one device and for `sync.pairing-lifetime`."
+    },
+    {
+      "id": "SYN-21",
+      "text": "Either device can show the pairing code: a phone scans it with its camera, a computer with its webcam, and either can paste it instead.",
+      "related": [
+        "#SYN-9"
+      ]
+    },
+    {
+      "id": "SYN-22",
+      "text": "A device that already holds data can still join, once the user agrees after giving it the code; a complete copy of its database is saved first, then the collection replaces it.",
+      "related": [
+        "#SYN-9"
+      ]
+    }
+  ],
+  "values": [
+    {
+      "id": "sync.pairing-lifetime",
+      "type": "duration",
+      "value": "10min"
+    }
+  ]
+}
