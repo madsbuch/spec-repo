@@ -1,28 +1,29 @@
 {
   "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
-  "title": "Engineering rules",
-  "summary": "How an app of React and TypeScript in a Tauri shell, over SQLite, is built where it is decided and has to hold.",
+  "title": "Keel",
+  "summary": "Engineering rules for an app of React and TypeScript in a Tauri shell, over SQLite: the stack, the build, type safety and the JSON boundary.",
   "shared": {
-    "id": "engineering-rules"
+    "id": "keel",
+    "logo": "keel/logo.png"
   },
-  "description": "Rules that hold across the whole code base, so that what a compiler or a linter can catch never reaches review.",
+  "description": "Rules that hold across the whole code base, out of sight like a keel, so that what a compiler or a linter can catch never reaches review.",
   "requirements": [
     {
-      "id": "engineering-rules.ENG-1",
+      "id": "keel.ENG-1",
       "text": "The frontend is React and TypeScript in a Tauri 2 shell; SQLite runs in Rust and the frontend queries it through drizzle."
     },
     {
-      "id": "engineering-rules.ENG-2",
+      "id": "keel.ENG-2",
       "text": "`bun run build` typechecks `src/`, lints everything and bundles, and fails on any type or lint error."
     },
     {
-      "id": "engineering-rules.ENG-3",
-      "text": "Frontend packages are installed only once they have been published for `engineering-rules.deps-minimum-age`."
+      "id": "keel.ENG-3",
+      "text": "Frontend packages are installed only once they have been published for `keel.deps-minimum-age`."
     }
   ],
   "values": [
     {
-      "id": "engineering-rules.deps-minimum-age",
+      "id": "keel.deps-minimum-age",
       "type": "duration",
       "value": "14d",
       "description": "How long a package version must have been published before it is installed."

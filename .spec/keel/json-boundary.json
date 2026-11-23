@@ -6,18 +6,18 @@
   "description": "Untrusted JSON is SQLite JSON columns, model output, external API responses, JSON in the settings table, and whatever Tauri commands and plugins return.",
   "requirements": [
     {
-      "id": "engineering-rules.JSN-1",
+      "id": "keel.JSN-1",
       "text": "`JSON.parse` is called only inside `src/lib/schemas.ts`."
     },
     {
-      "id": "engineering-rules.JSN-2",
+      "id": "keel.JSN-2",
       "text": "Untrusted JSON and the results of Tauri commands are parsed through a zod schema in `src/lib/schemas.ts`, never cast.",
       "related": [
-        "#engineering-rules.TYP-1"
+        "#keel.TYP-1"
       ]
     },
     {
-      "id": "engineering-rules.JSN-3",
+      "id": "keel.JSN-3",
       "text": "Schemas for model and API output coerce and default, so a sloppy answer degrades instead of failing."
     }
   ]
