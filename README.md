@@ -10,6 +10,7 @@ checks like any other, and its code cites the shared requirements by id
 | | Part | Id | What it says | Used by |
 | --- | --- | --- | --- | --- |
 | <img src=".spec/tandem/logo.png" width="40" alt=""> | [Tandem](.spec/tandem) | `tandem` | Peer-to-peer sync between a collection's devices on the local network: discovery, pairing, the channel, merging (SQLite rows by hybrid logical clock), change tracking, snapshots, and saying why a device can't be reached. | Commonplace |
+| <img src=".spec/keel/logo.png" width="40" alt=""> | [Keel](.spec/keel) | `keel` | Engineering rules for an app of React and TypeScript in a Tauri shell, over SQLite: the stack, a build that fails on any type or lint error, packages only once they've aged, type safety (no casts, `!`, `any` or unsafe Rust) and the JSON boundary (untrusted JSON only through zod). | Commonplace |
 
 This repository is a spec itself, so Better GitHub browses it, compares its
 versions and reviews its pull requests like any other.
