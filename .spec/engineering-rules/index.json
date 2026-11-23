@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Engineering rules",
+  "summary": "How an app of React and TypeScript in a Tauri shell, over SQLite, is built where it is decided and has to hold.",
+  "shared": {
+    "id": "engineering-rules"
+  },
+  "description": "Rules that hold across the whole code base, so that what a compiler or a linter can catch never reaches review.",
+  "requirements": [
+    {
+      "id": "engineering-rules.ENG-1",
+      "text": "The frontend is React and TypeScript in a Tauri 2 shell; SQLite runs in Rust and the frontend queries it through drizzle."
+    },
+    {
+      "id": "engineering-rules.ENG-2",
+      "text": "`bun run build` typechecks `src/`, lints everything and bundles, and fails on any type or lint error."
+    },
+    {
+      "id": "engineering-rules.ENG-3",
+      "text": "Frontend packages are installed only once they have been published for `engineering-rules.deps-minimum-age`."
+    }
+  ],
+  "values": [
+    {
+      "id": "engineering-rules.deps-minimum-age",
+      "type": "duration",
+      "value": "14d",
+      "description": "How long a package version must have been published before it is installed."
+    }
+  ]
+}
