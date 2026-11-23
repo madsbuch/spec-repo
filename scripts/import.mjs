@@ -5,16 +5,21 @@
 // Run it from the product repository's root, with this repository checked out
 // beside it at the commit you want:
 //
-//   node ../spec-repo/scripts/import.mjs sync          copy (or update) the part "sync"
+//   node ../spec-repo/scripts/import.mjs tandem        copy (or update) the part "tandem"
 //   node ../spec-repo/scripts/import.mjs --check       check every imported part is unchanged
 //
-// The part lands at the same path it has here (.spec/sync), so references
+// The part lands at the same path it has here (.spec/tandem), so references
 // inside it keep working. The copy must not be edited by hand: --check fails
-// when its files differ from the commit it was copied from.
+// when its files differ from the commit it was copied from. An earlier copy is
+// found by the part's permanent id, so a part renamed here moves in the product
+// too, and its ids stay.
 import { cpSync, existsSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { git, readJson, treeId } from "./lib.mjs";
+
+/** A waiver of a part names its path, which moves with a rename. */
+const movedRef = (ref, from, to) => (ref === from ? to : ref.startsWith(`${from}/`) ? `${to}${ref.slice(from.length)}` : ref);
 
 const shared = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const product = process.cwd();
@@ -54,12 +59,27 @@ if (git(shared, "status", "--porcelain", "--", source) !== "") {
   process.exit(2);
 }
 
+const id = readJson(join(shared, source, "index.json")).shared?.id;
+if (typeof id !== "string") {
+  console.error(`${source} has no permanent id (shared.id in its index.json), so it isn't a shared part.`);
+  process.exit(2);
+}
 const commit = git(shared, "rev-parse", "HEAD");
 const tree = git(shared, "rev-parse", `HEAD:${source}`);
 const remote = git(shared, "remote", "get-url", "origin");
 const from = /github\.com[/:]([^/]+\/[^/.]+?)(?:\.git)?$/.exec(remote)?.[1] ?? remote;
 
+const imports = root.imports ?? [];
+const existing = imports.find((entry) => entry.id === id);
 const target = join(product, source);
+if (existing !== undefined && existing.at !== part) {
+  // Renamed since it was copied: the old copy goes.
+  rmSync(join(product, ".spec", existing.at), { recursive: true, force: true });
+  console.log(`The part was renamed: moving .spec/${existing.at} to ${source}. Change references to ${existing.at}/… paths in this spec.`);
+} else if (existing === undefined && existsSync(target)) {
+  console.error(`${source} is there already, and isn't a copy of ${id}. Move it out of the way first.`);
+  process.exit(2);
+}
 rmSync(target, { recursive: true, force: true });
 cpSync(join(shared, source), target, { recursive: true });
 const copied = treeId(product, source);
@@ -68,12 +88,11 @@ if (copied !== tree) {
   process.exit(1);
 }
 
-const imports = root.imports ?? [];
-const existing = imports.find((entry) => entry.at === part);
 const before = existing?.commit;
-const entry = { ...existing, at: part, from, commit, tree };
-// Keep the keys in a stable order: where it comes from first, then what the product changes.
-const ordered = Object.fromEntries(["at", "from", "commit", "tree", "order", "values", "waived"].filter((key) => entry[key] !== undefined).map((key) => [key, entry[key]]));
+const waived = existing?.waived?.map((waiver) => ({ ...waiver, ref: movedRef(waiver.ref, existing.at, part) }));
+const entry = { ...existing, id, at: part, from, commit, tree, ...(waived !== undefined ? { waived } : {}) };
+// Keep the keys in a stable order: which part and where it comes from first, then what the product changes.
+const ordered = Object.fromEntries(["id", "at", "from", "commit", "tree", "order", "values", "waived"].filter((key) => entry[key] !== undefined).map((key) => [key, entry[key]]));
 root.imports = existing ? imports.map((other) => (other === existing ? ordered : other)) : [...imports, ordered];
 writeFileSync(rootPath, JSON.stringify(root, null, 2) + "\n");
 

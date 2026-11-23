@@ -5,18 +5,18 @@
   "order": 6,
   "requirements": [
     {
-      "id": "SYN-18",
-      "text": "While the app runs, a desktop device keeps a daily copy of the database for `sync.snapshot-daily`, then one a week back to `sync.snapshot-weekly`."
+      "id": "tandem.SYN-18",
+      "text": "While the app runs, a desktop device keeps a daily copy of the database for `tandem.snapshot-daily`, then one a week back to `tandem.snapshot-weekly`."
     }
   ],
   "values": [
     {
-      "id": "sync.snapshot-daily",
+      "id": "tandem.snapshot-daily",
       "type": "duration",
       "value": "14d"
     },
     {
-      "id": "sync.snapshot-weekly",
+      "id": "tandem.snapshot-weekly",
       "type": "duration",
       "value": "91d"
     }

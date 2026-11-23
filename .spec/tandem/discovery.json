@@ -5,7 +5,7 @@
   "order": 1,
   "requirements": [
     {
-      "id": "SYN-5",
+      "id": "tandem.SYN-5",
       "text": "Devices find each other: each announces itself on the local network (mDNS, with its sync port and the collection's tag) and looks for the others, and is tried at every address it announced, IPv6 and IPv4, all at once; the UDP broadcast and each peer's last known address are tried too.",
       "history": [
         {
@@ -18,15 +18,15 @@
       "version": 2
     },
     {
-      "id": "SYN-6",
+      "id": "tandem.SYN-6",
       "text": "A discovery probe names the collection by a short tag derived from its id, never by the id itself."
     },
     {
-      "id": "SYN-25",
+      "id": "tandem.SYN-25",
       "text": "A device showing a pairing code announces, beside itself, a tag derived from the code (never the code), so the device that scans it finds it nearby at every address it has, as well as at the addresses the code holds.",
       "related": [
-        "#SYN-5",
-        "#SYN-9"
+        "#tandem.SYN-5",
+        "#tandem.SYN-9"
       ]
     }
   ]

@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 // Checks this repository's spec: every item fits the spec schema, no id is used
 // twice, every reference resolves, versions carry their history, and every
-// shared part stands on its own, since a product may copy it without the others.
+// shared part has an identity (a permanent id, its folder named after its
+// title, every id in its namespace) and stands on its own, since a product may
+// copy it without the others.
 //
 //   npm run check
 import { existsSync, readFileSync } from "node:fs";
@@ -44,12 +46,33 @@ for (const id of items.keys()) {
   if (id !== "" && !items.has(partOf(id))) problems.push(`${partOf(id)}/: a shared part needs an index.json.`);
 }
 
+// Every shared part has a permanent id of its own, and its folder is named after its title.
+const slug = (title) => title.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const sharedIds = new Map();
+for (const [id, item] of items) {
+  if (id === "" || id.includes("/")) {
+    if (item.shared !== undefined) problems.push(`${id || "(root)"}: only a shared part's own index.json has shared.`);
+    continue;
+  }
+  if (item.shared === undefined) {
+    problems.push(`${id}: a shared part's index.json has shared, with its permanent id.`);
+    continue;
+  }
+  if (sharedIds.has(item.shared.id)) problems.push(`${id}: the permanent id ${item.shared.id} is ${sharedIds.get(item.shared.id)}'s too.`);
+  sharedIds.set(item.shared.id, id);
+  if (slug(item.title) !== id) problems.push(`${id}: the folder is named after the title, "${item.title}": ${slug(item.title)}.`);
+  if (item.shared.logo !== undefined && !existsSync(join(SPEC, item.shared.logo))) problems.push(`${id}: the logo ${item.shared.logo} isn't there.`);
+}
+const namespaceOf = (itemId) => items.get(partOf(itemId))?.shared?.id;
+
 // Where every story, requirement and value is.
 const owner = new Map();
 for (const [id, item] of items) {
   for (const entry of [...(item.stories ?? []), ...(item.requirements ?? []), ...(item.values ?? [])]) {
     if (owner.has(entry.id)) problems.push(`${entry.id} is used twice: in "${owner.get(entry.id)}" and "${id}".`);
     else owner.set(entry.id, id);
+    const namespace = namespaceOf(id);
+    if (id !== "" && namespace !== undefined && !entry.id.startsWith(`${namespace}.`)) problems.push(`${id} ${entry.id}: ids in this part start with "${namespace}.".`);
   }
 }
 const requirementIds = new Set([...items.values()].flatMap((item) => (item.requirements ?? []).map((r) => r.id)));
