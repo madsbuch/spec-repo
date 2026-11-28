@@ -135,6 +135,18 @@
     {
       "id": "counsel.AGT-4",
       "text": "A request to OpenRouter that fails says why in plain words, telling apart a key that isn't accepted, credit that has run out, a rate limit, a model that isn't available and no network, and says what to do about it."
+    },
+    {
+      "id": "counsel.AGT-8",
+      "text": "An answer the agent is working on keeps going when the screen turns off or the user switches to another app, for as long as the platform allows."
+    },
+    {
+      "id": "counsel.AGT-9",
+      "text": "When the platform ends an answer anyway, the chat says the answer was cut off, keeps what was written and changed so far, and offers to continue.",
+      "related": [
+        "#counsel.AGT-2",
+        "#counsel.AGT-8"
+      ]
     }
   ],
   "values": [
