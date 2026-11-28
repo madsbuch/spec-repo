@@ -1,68 +1,22 @@
 {
   "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
   "title": "Reading",
-  "summary": "The agent can read all of the app's data, with SQL that can't write.",
+  "summary": "The agent can read the app's data, with SQL or read tools that can't write.",
   "order": 4,
   "description": "The app's data is its SQLite database, and whatever the product keeps beside it. The more of it the agent can read, the better it answers, so it reads freely; what keeps the data safe is that reading can't change it.",
   "requirements": [
     {
       "id": "counsel.DAT-1",
-      "text": "The agent can run SQL on the app's SQLite database, on a connection opened read-only, so no statement it runs can change the data."
-    },
-    {
-      "id": "counsel.DAT-2",
-      "text": "A query runs only if it is one statement that reads; any other is refused, and the agent is told why.",
-      "related": [
-        "#counsel.DAT-1"
-      ]
-    },
-    {
-      "id": "counsel.DAT-3",
-      "text": "A query returns at most `counsel.query-rows` rows and is stopped after `counsel.query-timeout`, and the agent is told when a result was cut short."
-    },
-    {
-      "id": "counsel.DAT-4",
-      "text": "The agent can list the tables and views it can read, with their columns and types."
-    },
-    {
-      "id": "counsel.DAT-5",
-      "text": "The product describes what each table the agent can read holds, and each column whose meaning or unit its name doesn't make plain, and the agent is given these descriptions.",
-      "related": [
-        "#counsel.DAT-4"
-      ]
-    },
-    {
-      "id": "counsel.DAT-6",
-      "text": "Tables the product marks as hidden, such as the bookkeeping of a device, are neither listed to the agent nor readable by it."
-    },
-    {
-      "id": "counsel.DAT-7",
-      "text": "Data the product keeps outside its database, the agent reads through read tools the product gives it.",
-      "level": "should"
-    },
-    {
-      "id": "counsel.DAT-8",
-      "text": "Each message the user sends tells the agent what the user has open in the app: the screen, and the item on it.",
-      "level": "should"
-    },
-    {
-      "id": "counsel.DAT-9",
-      "text": "Each query the agent runs shows in the chat, folded, with its SQL and how many rows it returned; unfolded, it shows the rows."
-    }
-  ],
-  "values": [
-    {
-      "id": "counsel.query-rows",
-      "type": "number",
-      "value": 500,
-      "unit": "rows",
-      "description": "The most rows one query returns to the agent."
-    },
-    {
-      "id": "counsel.query-timeout",
-      "type": "duration",
-      "value": "5s",
-      "description": "How long one query may run."
+      "text": "The agent can read the app's data, through read-only SQL or through read tools the product gives it, and nothing it reads with can change data.",
+      "history": [
+        {
+          "version": 1,
+          "text": "The agent can run SQL on the app's SQLite database, on a connection opened read-only, so no statement it runs can change the data.",
+          "reason": "Read-only SQL is one way to read, not the only one; a product's own read tools do as well.",
+          "date": "2026-11-28"
+        }
+      ],
+      "version": 2
     }
   ]
 }

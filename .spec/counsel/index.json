@@ -53,10 +53,7 @@
       "want": "to ask about them in plain words",
       "soThat": "I get an answer without digging through screens",
       "requirements": [
-        "#counsel.DAT-1",
-        "#counsel.DAT-4",
-        "#counsel.DAT-5",
-        "#counsel.DAT-8"
+        "#counsel.DAT-1"
       ]
     },
     {
@@ -66,44 +63,31 @@
       "soThat": "it's done without my finding the screen for it",
       "requirements": [
         "#counsel.ACT-1",
-        "#counsel.ACT-3",
-        "#counsel.ACT-5"
+        "#counsel.ACT-4"
       ]
     },
     {
       "id": "counsel.US-3",
-      "as": "someone trusting the agent with my data",
-      "want": "a misunderstanding never to cost me anything",
-      "soThat": "I can let it act without checking its every step",
-      "requirements": [
-        "#counsel.DAT-1",
-        "#counsel.ACT-4",
-        "#counsel.ACT-6",
-        "#counsel.ACT-7"
-      ]
-    },
-    {
-      "id": "counsel.US-4",
       "as": "someone who comes with a different question each time",
       "want": "each conversation to be one of its own that I can come back to",
       "soThat": "an old topic doesn't muddle a new one",
       "requirements": [
         "#counsel.CHT-1",
-        "#counsel.CHT-3"
+        "#counsel.CHT-4"
       ]
     },
     {
-      "id": "counsel.US-5",
+      "id": "counsel.US-4",
       "as": "someone paying for the model myself",
       "want": "to bring my own key and choose the model",
       "soThat": "I decide what I pay for and what I get",
       "requirements": [
         "#counsel.SET-1",
-        "#counsel.SET-3"
+        "#counsel.SET-4"
       ]
     },
     {
-      "id": "counsel.US-6",
+      "id": "counsel.US-5",
       "as": "someone using an app for one part of my life",
       "want": "the agent to meet me as someone in that field would",
       "soThat": "its help fits what I came to the app for",
@@ -123,10 +107,19 @@
     },
     {
       "id": "counsel.AGT-2",
-      "text": "The user can stop the agent at any point of an answer; what it wrote so far stays in the chat, and so do changes it already made, with their undo.",
+      "text": "The user can stop the agent at any point of an answer; what it wrote so far stays in the chat, and so do changes it already made.",
       "related": [
-        "#counsel.ACT-5"
-      ]
+        "#counsel.ACT-4"
+      ],
+      "history": [
+        {
+          "version": 1,
+          "text": "The user can stop the agent at any point of an answer; what it wrote so far stays in the chat, and so do changes it already made, with their undo.",
+          "reason": "Changes need no undo.",
+          "date": "2026-11-28"
+        }
+      ],
+      "version": 2
     },
     {
       "id": "counsel.AGT-3",

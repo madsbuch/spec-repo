@@ -10,39 +10,33 @@
     },
     {
       "id": "counsel.CHT-2",
-      "text": "A new chat can be started from the list of chats and from an open chat."
+      "text": "The list of chats is the history of the chats the user has had."
     },
     {
       "id": "counsel.CHT-3",
-      "text": "A chat that is opened again shows all of it, with its queries and changes, and continues where it left off.",
-      "related": [
-        "#counsel.DAT-9",
-        "#counsel.ACT-5"
-      ]
+      "text": "A new chat can be started from the list of chats and from an open chat."
     },
     {
       "id": "counsel.CHT-4",
-      "text": "A chat can be deleted, once the user confirms it."
+      "text": "A chat that is opened again shows all of it, with its queries and changes, and continues where it left off.",
+      "related": [
+        "#counsel.ACT-4"
+      ]
     },
     {
       "id": "counsel.CHT-5",
-      "text": "Chats are kept in the app's database, with every message, tool call and result, and which model wrote each answer."
+      "text": "A chat can be deleted, once the user confirms it."
     },
     {
       "id": "counsel.CHT-6",
-      "text": "A chat that has grown too long for the chosen model says so, and offers to start a new one."
+      "text": "Chats are kept in the app's database, with every message, tool call and result, and which model wrote each answer."
     },
     {
       "id": "counsel.CHT-7",
-      "text": "The chats can be searched by their titles and messages.",
-      "level": "may"
-    },
-    {
-      "id": "counsel.CHT-8",
       "text": "The chat renders the common text formats the agent answers in, such as Markdown, instead of showing their markup."
     },
     {
-      "id": "counsel.CHT-9",
+      "id": "counsel.CHT-8",
       "text": "A chat is named by the agent, with a tool it has for that, or by the first message the user sent in it, truncated."
     }
   ]

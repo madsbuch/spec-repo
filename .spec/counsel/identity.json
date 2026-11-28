@@ -11,10 +11,7 @@
     },
     {
       "id": "counsel.IDN-2",
-      "text": "The agent's instructions give it its profession, what the app is for (`counsel.purpose`), what its data means, and today's date and time in the user's time zone.",
-      "related": [
-        "#counsel.DAT-5"
-      ]
+      "text": "The agent's instructions give it its profession, what the app is for (`counsel.purpose`), what its data means, and today's date and time in the user's time zone."
     },
     {
       "id": "counsel.IDN-3",

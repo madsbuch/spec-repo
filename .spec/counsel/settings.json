@@ -24,6 +24,10 @@
     },
     {
       "id": "counsel.SET-3",
+      "text": "The settings list the models OpenRouter offers, the complete list as OpenRouter provides it, and the user chooses one."
+    },
+    {
+      "id": "counsel.SET-4",
       "text": "Each model in the list shows its name, its provider and its price per million input and output tokens.",
       "history": [
         {
@@ -36,25 +40,13 @@
       "version": 2
     },
     {
-      "id": "counsel.SET-4",
+      "id": "counsel.SET-5",
       "text": "The list of models can be searched by name and provider.",
       "level": "should"
     },
     {
-      "id": "counsel.SET-5",
-      "text": "When OpenRouter no longer offers the chosen model, the settings and the chat say so, and the chat asks for another before it sends.",
-      "related": [
-        "#counsel.AGT-1"
-      ]
-    },
-    {
       "id": "counsel.SET-6",
       "text": "When the list of models can't be fetched, the settings say why and keep the chosen model."
-    },
-    {
-      "id": "counsel.SET-7",
-      "text": "The settings show the credit left on the key.",
-      "level": "may"
     }
   ]
 }
