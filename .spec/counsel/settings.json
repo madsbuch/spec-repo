@@ -1,0 +1,58 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Settings",
+  "summary": "The user's OpenRouter API key, and the model the agent runs on.",
+  "order": 2,
+  "description": "The agent has a section of its own in the app's settings, named after its profession.",
+  "requirements": [
+    {
+      "id": "counsel.SET-1",
+      "text": "The user enters an OpenRouter API key in the agent's settings."
+    },
+    {
+      "id": "counsel.SET-2",
+      "text": "A key is checked with OpenRouter when it is saved, and the settings say whether it was accepted and, if not, why."
+    },
+    {
+      "id": "counsel.SET-3",
+      "text": "The key is kept in the operating system's store for secrets, never in the app's database, so it is never synced, exported or backed up with the data."
+    },
+    {
+      "id": "counsel.SET-4",
+      "text": "A saved key is shown only by its last four characters, and can be replaced or removed."
+    },
+    {
+      "id": "counsel.SET-5",
+      "text": "The settings list the models OpenRouter offers that can call tools, fetched when the settings open, and the user picks one."
+    },
+    {
+      "id": "counsel.SET-6",
+      "text": "Each model in the list shows its name, its provider, how much context it takes and its price per million input and output tokens."
+    },
+    {
+      "id": "counsel.SET-7",
+      "text": "The list of models can be searched by name and provider.",
+      "level": "should"
+    },
+    {
+      "id": "counsel.SET-8",
+      "text": "When OpenRouter no longer offers the chosen model, the settings and the chat say so, and the chat asks for another before it sends.",
+      "related": [
+        "#counsel.AGT-2"
+      ]
+    },
+    {
+      "id": "counsel.SET-9",
+      "text": "When the list of models can't be fetched, the settings say why and keep the chosen model."
+    },
+    {
+      "id": "counsel.SET-10",
+      "text": "The settings say that what the agent reads from the app is sent to OpenRouter and to the provider of the chosen model."
+    },
+    {
+      "id": "counsel.SET-11",
+      "text": "The settings show the credit left on the key.",
+      "level": "may"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Acting",
+  "summary": "The agent changes the app when the user asks, through actions the product defines.",
+  "order": 5,
+  "description": "An action is a change the product lets the agent make, such as adding an entry or opening a screen. Adding and editing happen at once and can be undone; what would lose data waits for the user to confirm it.",
+  "requirements": [
+    {
+      "id": "counsel.ACT-1",
+      "text": "The agent changes the app only through actions the product defines, never by writing SQL.",
+      "related": [
+        "#counsel.DAT-1"
+      ]
+    },
+    {
+      "id": "counsel.ACT-2",
+      "text": "An action makes its change the way the app's own screens make it, with the same checks, and the change shows at once wherever that data shows."
+    },
+    {
+      "id": "counsel.ACT-3",
+      "text": "There is an action for each change a user can make from the app's screens.",
+      "level": "should"
+    },
+    {
+      "id": "counsel.ACT-4",
+      "text": "The agent makes a change only when the user asked for it; a change it thinks of itself, it proposes and waits."
+    },
+    {
+      "id": "counsel.ACT-5",
+      "text": "An action that adds or edits happens at once, and shows in the chat as what changed, with a way to open it in the app and an undo."
+    },
+    {
+      "id": "counsel.ACT-6",
+      "text": "An action that deletes or overwrites data is first proposed in the chat, saying what would be lost, and happens only once the user confirms it there; when the user declines, the agent is told."
+    },
+    {
+      "id": "counsel.ACT-7",
+      "text": "Undo puts the data back as it was before the change, unless it has changed since, and then says so and changes nothing.",
+      "related": [
+        "#counsel.ACT-5"
+      ]
+    },
+    {
+      "id": "counsel.ACT-8",
+      "text": "An action makes all of its change or none of it, and one that fails tells the agent why."
+    },
+    {
+      "id": "counsel.ACT-9",
+      "text": "The agent can open a screen or an item in the app for the user.",
+      "level": "should"
+    }
+  ]
+}

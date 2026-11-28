@@ -1,0 +1,129 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Counsel",
+  "summary": "An agent in the app, on a model from OpenRouter: it reads the app's data, changes it when asked, and keeps each conversation as a chat of its own.",
+  "shared": {
+    "id": "counsel",
+    "logo": "counsel/logo.png"
+  },
+  "description": "The agent works in the app the way a professional would beside the user: it knows what the app holds and can act in it. Each product that uses this part says what the agent's profession is (a coach, a tutor), what the app's data is, and which actions the agent may take.\n\nThe agent runs on the user's own OpenRouter account, so the user chooses the model and pays for it.",
+  "stories": [
+    {
+      "id": "counsel.US-1",
+      "as": "someone who keeps their records in the app",
+      "want": "to ask about them in plain words",
+      "soThat": "I get an answer without digging through screens",
+      "requirements": [
+        "#counsel.DAT-1",
+        "#counsel.DAT-4",
+        "#counsel.DAT-5",
+        "#counsel.DAT-8"
+      ]
+    },
+    {
+      "id": "counsel.US-2",
+      "as": "someone in the middle of something",
+      "want": "to tell the app what to change",
+      "soThat": "it's done without my finding the screen for it",
+      "requirements": [
+        "#counsel.ACT-1",
+        "#counsel.ACT-3",
+        "#counsel.ACT-5"
+      ]
+    },
+    {
+      "id": "counsel.US-3",
+      "as": "someone trusting the agent with my data",
+      "want": "a misunderstanding never to cost me anything",
+      "soThat": "I can let it act without checking its every step",
+      "requirements": [
+        "#counsel.DAT-1",
+        "#counsel.ACT-4",
+        "#counsel.ACT-6",
+        "#counsel.ACT-7"
+      ]
+    },
+    {
+      "id": "counsel.US-4",
+      "as": "someone who comes with a different question each time",
+      "want": "each conversation to be one of its own that I can come back to",
+      "soThat": "an old topic doesn't muddle a new one",
+      "requirements": [
+        "#counsel.CHT-1",
+        "#counsel.CHT-2",
+        "#counsel.CHT-5"
+      ]
+    },
+    {
+      "id": "counsel.US-5",
+      "as": "someone paying for the model myself",
+      "want": "to bring my own key and choose the model",
+      "soThat": "I decide what I pay for and what I get",
+      "requirements": [
+        "#counsel.AGT-1",
+        "#counsel.SET-1",
+        "#counsel.SET-5",
+        "#counsel.SET-6"
+      ]
+    },
+    {
+      "id": "counsel.US-6",
+      "as": "someone using an app for one part of my life",
+      "want": "the agent to meet me as someone in that field would",
+      "soThat": "its help fits what I came to the app for",
+      "requirements": [
+        "#counsel.IDN-1",
+        "#counsel.IDN-3"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "counsel.AGT-1",
+      "text": "The agent runs on the model the user chose on OpenRouter, with the user's own API key; the app calls OpenRouter directly, through no server of its own."
+    },
+    {
+      "id": "counsel.AGT-2",
+      "text": "Until an API key is saved and a model chosen, the chat says which is missing and leads to the settings for it.",
+      "related": [
+        "counsel/settings"
+      ]
+    },
+    {
+      "id": "counsel.AGT-3",
+      "text": "An answer streams into the chat as the model writes it."
+    },
+    {
+      "id": "counsel.AGT-4",
+      "text": "The user can stop the agent at any point of an answer; what it wrote so far stays in the chat, and so do changes it already made, with their undo.",
+      "related": [
+        "#counsel.ACT-5"
+      ]
+    },
+    {
+      "id": "counsel.AGT-5",
+      "text": "The agent makes at most `counsel.max-steps` tool calls for one answer, then answers with what it found."
+    },
+    {
+      "id": "counsel.AGT-6",
+      "text": "A request to OpenRouter that fails says why in plain words, telling apart a key that isn't accepted, credit that has run out, a rate limit, a model that isn't available and no network, and says what to do about it."
+    },
+    {
+      "id": "counsel.AGT-7",
+      "text": "The app sends nothing to OpenRouter except to answer a message the user sent, or to title its chat.",
+      "related": [
+        "#counsel.CHT-4",
+        "#counsel.SET-10"
+      ]
+    }
+  ],
+  "values": [
+    {
+      "id": "counsel.max-steps",
+      "type": "number",
+      "value": 20,
+      "unit": "tool calls",
+      "description": "How many tool calls the agent may make for one answer."
+    }
+  ]
+}
