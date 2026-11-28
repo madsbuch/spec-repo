@@ -15,7 +15,11 @@
     },
     {
       "id": "counsel.SET-3",
-      "text": "The key is kept in the operating system's store for secrets, never in the app's database, so it is never synced, exported or backed up with the data."
+      "text": "The key is kept in the operating system's store for secrets, never in the app's database, so it is never synced, exported or backed up with the data.",
+      "deprecation": {
+        "reason": "Out of scope for this part: where the product keeps secrets is the product's own decision, not the agent's.",
+        "date": "2026-11-28"
+      }
     },
     {
       "id": "counsel.SET-4",
