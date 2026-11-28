@@ -36,6 +36,10 @@
       "id": "counsel.CHT-7",
       "text": "The chats can be searched by their titles and messages.",
       "level": "may"
+    },
+    {
+      "id": "counsel.CHT-8",
+      "text": "The chat renders the common text formats the agent answers in, such as Markdown, instead of showing their markup."
     }
   ]
 }
