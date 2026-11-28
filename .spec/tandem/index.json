@@ -7,6 +7,32 @@
     "logo": "tandem/logo.png"
   },
   "description": "A collection is the data a set of devices share; each product that uses this part says what its collection is. The devices sync directly with each other on the local network, without a server.",
+  "groundwork": [
+    "The collection is kept in one SQLite database per device.",
+    {
+      "text": "Every table that syncs has a primary key that two devices can't both make, so rows made on different devices never collide by key.",
+      "ways": [
+        "random ids (UUIDv4, or UUIDv7 to keep them in time order) made by the app",
+        "existing integer keys migrated to random ids, with the references to them"
+      ]
+    },
+    {
+      "text": "The app's SQLite can load an extension at startup, on every platform the app runs on.",
+      "ways": [
+        "SQLite opened from native code that the app controls, with extension loading enabled",
+        "a SQLite library that bundles the extension"
+      ]
+    },
+    {
+      "text": "The app's database schema changes only through migrations, which run in order on every device, and a part can run its own step after each.",
+      "ways": [
+        "a hook in the migration runner the app already has",
+        "migrations moved into a runner that calls back after each one"
+      ]
+    },
+    "The app runs as a native app on each of its platforms, so it can listen and send on the local network.",
+    "The app has settings the user can open, and a part can add a section of its own to them."
+  ],
   "stories": [
     {
       "id": "tandem.US-1",

@@ -3,7 +3,8 @@
 // twice, every reference resolves, versions carry their history, and every
 // shared part has an identity (a permanent id, its folder named after its
 // title, every id in its namespace) and stands on its own, since a product may
-// copy it without the others.
+// copy it without the others: it refers only to itself, and its groundwork
+// names no other part.
 //
 //   npm run check
 import { existsSync, readFileSync } from "node:fs";
@@ -64,6 +65,23 @@ for (const [id, item] of items) {
   if (item.shared.logo !== undefined && !existsSync(join(SPEC, item.shared.logo))) problems.push(`${id}: the logo ${item.shared.logo} isn't there.`);
 }
 const namespaceOf = (itemId) => items.get(partOf(itemId))?.shared?.id;
+
+// Groundwork is on a part's own index.json, and says what the app must be like, never which part makes it so.
+const escape = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const partNames = [...sharedIds.values()].map((id) => ({ id, name: new RegExp(`\\b(${escape(items.get(id).title)}|${escape(items.get(id).shared.id)}\\.)`) }));
+for (const [id, item] of items) {
+  if (item.groundwork === undefined) continue;
+  if (id === "" || id.includes("/")) {
+    problems.push(`${id || "(root)"}: groundwork goes on a shared part's own index.json.`);
+    continue;
+  }
+  for (const entry of item.groundwork) {
+    const texts = typeof entry === "string" ? [entry] : [entry.text, ...(entry.ways ?? [])];
+    for (const other of partNames) {
+      if (other.id !== id && texts.some((text) => other.name.test(text))) problems.push(`${id}: groundwork names the shared part "${other.id}". Say what the app must be like instead, so any way of making it true will do.`);
+    }
+  }
+}
 
 // Where every story, requirement and value is.
 const owner = new Map();

@@ -18,6 +18,9 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { git, readJson, treeId } from "./lib.mjs";
 
+/** A part's groundwork, each item as { text, ways }. */
+const groundworkOf = (index) => (index.groundwork ?? []).map((g) => (typeof g === "string" ? { text: g, ways: [] } : { text: g.text, ways: g.ways ?? [] }));
+
 /** A waiver of a part names its path, which moves with a rename. */
 const movedRef = (ref, from, to) => (ref === from ? to : ref.startsWith(`${from}/`) ? `${to}${ref.slice(from.length)}` : ref);
 
@@ -72,6 +75,9 @@ const from = /github\.com[/:]([^/]+\/[^/.]+?)(?:\.git)?$/.exec(remote)?.[1] ?? r
 const imports = root.imports ?? [];
 const existing = imports.find((entry) => entry.id === id);
 const target = join(product, source);
+// The groundwork of the copy being replaced, read before it goes, to mark what is new on an update.
+const oldIndex = existing === undefined ? undefined : join(product, ".spec", existing.at, "index.json");
+const groundworkBefore = new Set(oldIndex !== undefined && existsSync(oldIndex) ? groundworkOf(readJson(oldIndex)).map((g) => g.text) : []);
 if (existing !== undefined && existing.at !== part) {
   // Renamed since it was copied: the old copy goes.
   rmSync(join(product, ".spec", existing.at), { recursive: true, force: true });
@@ -98,3 +104,19 @@ writeFileSync(rootPath, JSON.stringify(root, null, 2) + "\n");
 
 console.log(before === undefined ? `Imported ${source} from ${from}@${commit.slice(0, 7)}.` : before === commit ? `${source} is already at ${from}@${commit.slice(0, 7)}.` : `Updated ${source} from ${before.slice(0, 7)} to ${commit.slice(0, 7)}.`);
 console.log("Review the change as a spec change, then reconcile what in the product is related to it.");
+
+// Groundwork: what the product must be like before the part is built. Not a gate: the first work.
+const groundwork = groundworkOf(readJson(join(target, "index.json")));
+if (groundwork.length > 0) {
+  const fresh = groundwork.filter((g) => !groundworkBefore.has(g.text));
+  const title = readJson(join(target, "index.json")).title;
+  if (existing !== undefined && fresh.length === 0) {
+    console.log(`\nThe groundwork of ${title} is as before (${groundwork.length} item(s)).`);
+  } else {
+    console.log(`\nBefore implementing ${title}, make each of these true in this product. Where one doesn't hold yet, look into what comes closest, work out ways to make it true here, and ask which to take (spec-llms.txt, "Adopting a shared part"):`);
+    for (const g of existing === undefined ? groundwork : fresh) {
+      console.log(`\n- ${existing === undefined ? "" : "(new) "}${g.text}`);
+      if (g.ways.length > 0) console.log(`  Ways: ${g.ways.join("; ")}.`);
+    }
+  }
+}

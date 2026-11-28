@@ -7,6 +7,45 @@
     "logo": "counsel/logo.png"
   },
   "description": "The agent works in the app the way a professional would beside the user: it knows what the app holds and can act in it. Each product that uses this part says what the agent's profession is (a coach, a tutor), what the app's data is, and which actions the agent may take.\n\nThe agent runs on the user's own OpenRouter account, so the user chooses the model and pays for it.",
+  "groundwork": [
+    "The app has settings the user can open, and a part can add a section of its own to them.",
+    {
+      "text": "The app keeps its data in a SQLite database that can be opened a second time, read-only, while the app uses it.",
+      "ways": [
+        "a second connection to the same file, opened read-only",
+        "a second connection with `PRAGMA query_only` set"
+      ]
+    },
+    {
+      "text": "The app's database schema changes only through migrations, and a part can add migrations of its own for its tables.",
+      "ways": [
+        "the migrations the app already runs at startup, in a folder a part can add to",
+        "a migration runner that takes migrations from several modules, in a fixed order"
+      ]
+    },
+    {
+      "text": "Every change a user can make from the app's screens goes through code that can also be called from outside the screen, with the same checks.",
+      "ways": [
+        "the functions the screens already call to save",
+        "the screens' writes moved into one module of commands that the screens and the agent both call"
+      ]
+    },
+    {
+      "text": "The app knows, in a form its code can read, which screen the user has open and which item is on it, and can open any screen or item by that form.",
+      "ways": [
+        "the router's current route and its parameters",
+        "a store of the current selection beside the router"
+      ]
+    },
+    {
+      "text": "The app has a place for a chat that stays open beside the screen the user is on.",
+      "ways": [
+        "a side panel the screens make room for",
+        "a drawer that slides over the screen on narrow windows",
+        "a window of its own"
+      ]
+    }
+  ],
   "stories": [
     {
       "id": "counsel.US-1",

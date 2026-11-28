@@ -43,6 +43,25 @@ one part without the others:
   shared ones, and a link holds from both ends.
 - **Ids are never reused.** Like in any spec, an id is never renumbered or
   given to something else.
+- **What the app must be like first is its groundwork.** A part's `index.json`
+  can list, in `groundwork`, what has to be true of the app before the part
+  can be built: plain sentences that an agent checks by reading the product,
+  not dependencies on other parts. Each one describes the app, never another
+  part ("The app has settings the user can open, and a part can add a section
+  of its own to them", not "the app uses the settings part"), so that any way
+  of making it true will do. It uses the part's own words, and has no id. It
+  lists only what the part can't bring about itself. An item can suggest
+  `ways` to make it true; they are a start, not a choice:
+
+  ```json
+  "groundwork": [
+    "The collection is kept in one SQLite database per device.",
+    {
+      "text": "The app has a place for a chat that stays open beside the screen the user is on.",
+      "ways": ["a side panel the screens make room for", "a window of its own"]
+    }
+  ]
+  ```
 
 `npm run check` checks all of this, together with the schema, references and
 histories.
@@ -81,6 +100,17 @@ repository's, and where it came from is recorded in the product's root item,
 ]
 ```
 
+- **Groundwork comes first.** Before any of a part's code, an agent checks
+  each item of its `groundwork` against the product. One that doesn't hold
+  yet is never a reason to turn the part down or to stop: it is the first
+  work. The agent looks into what the product has that comes closest, works
+  out two or three ways to make it true here (from the part's `ways` and
+  beyond), and asks the operator which to take, or whether to waive what in
+  the part depends on it. The chosen way goes into the product's own spec as a
+  requirement of its own, and is built before the part; a waiver goes into the
+  import's `waived`, with the operator's reason. `import.mjs` prints
+  the groundwork after copying, and on an update marks what is new. See
+  *Adopting a shared part* in the [spec format](https://github.com/madsbuch/better-github/blob/main/spec-llms.txt).
 - **Don't edit the copy.** Git gives a folder an id made from its files, so
   `tree` says exactly what was copied. `node ../spec-repo/scripts/import.mjs --check`
   fails when the copy differs, and a product's spec test can do the same. To change
