@@ -11,24 +11,17 @@
     },
     {
       "id": "counsel.IDN-2",
-      "text": "The chat shows the agent's messages under the name of its profession, with no picture of a person.",
-      "related": [
-        "#counsel.IDN-1"
-      ]
-    },
-    {
-      "id": "counsel.IDN-3",
       "text": "The agent's instructions give it its profession, what the app is for (`counsel.purpose`), what its data means, and today's date and time in the user's time zone.",
       "related": [
         "#counsel.DAT-5"
       ]
     },
     {
-      "id": "counsel.IDN-4",
+      "id": "counsel.IDN-3",
       "text": "The agent never claims to be a person; asked, it says it is an AI, and which model it runs on."
     },
     {
-      "id": "counsel.IDN-5",
+      "id": "counsel.IDN-4",
       "text": "The agent answers in the language the user writes in.",
       "level": "should"
     }

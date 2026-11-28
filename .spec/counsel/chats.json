@@ -10,18 +10,10 @@
     },
     {
       "id": "counsel.CHT-2",
-      "text": "The chats are listed by when each was last used, newest first, each with its title and that time."
-    },
-    {
-      "id": "counsel.CHT-3",
       "text": "A new chat can be started from the list of chats and from an open chat."
     },
     {
-      "id": "counsel.CHT-4",
-      "text": "A chat is titled by the model after its first answer, and the user can rename it."
-    },
-    {
-      "id": "counsel.CHT-5",
+      "id": "counsel.CHT-3",
       "text": "A chat that is opened again shows all of it, with its queries and changes, and continues where it left off.",
       "related": [
         "#counsel.DAT-9",
@@ -29,19 +21,19 @@
       ]
     },
     {
-      "id": "counsel.CHT-6",
+      "id": "counsel.CHT-4",
       "text": "A chat can be deleted, once the user confirms it."
     },
     {
-      "id": "counsel.CHT-7",
+      "id": "counsel.CHT-5",
       "text": "Chats are kept in the app's database, with every message, tool call and result, and which model wrote each answer."
     },
     {
-      "id": "counsel.CHT-8",
+      "id": "counsel.CHT-6",
       "text": "A chat that has grown too long for the chosen model says so, and offers to start a new one."
     },
     {
-      "id": "counsel.CHT-9",
+      "id": "counsel.CHT-7",
       "text": "The chats can be searched by their titles and messages.",
       "level": "may"
     }

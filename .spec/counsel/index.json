@@ -89,8 +89,7 @@
       "soThat": "an old topic doesn't muddle a new one",
       "requirements": [
         "#counsel.CHT-1",
-        "#counsel.CHT-2",
-        "#counsel.CHT-5"
+        "#counsel.CHT-3"
       ]
     },
     {
@@ -99,10 +98,8 @@
       "want": "to bring my own key and choose the model",
       "soThat": "I decide what I pay for and what I get",
       "requirements": [
-        "#counsel.AGT-1",
         "#counsel.SET-1",
-        "#counsel.SET-5",
-        "#counsel.SET-6"
+        "#counsel.SET-3"
       ]
     },
     {
@@ -112,48 +109,32 @@
       "soThat": "its help fits what I came to the app for",
       "requirements": [
         "#counsel.IDN-1",
-        "#counsel.IDN-3"
+        "#counsel.IDN-2"
       ]
     }
   ],
   "requirements": [
     {
       "id": "counsel.AGT-1",
-      "text": "The agent runs on the model the user chose on OpenRouter, with the user's own API key; the app calls OpenRouter directly, through no server of its own."
-    },
-    {
-      "id": "counsel.AGT-2",
       "text": "Until an API key is saved and a model chosen, the chat says which is missing and leads to the settings for it.",
       "related": [
         "counsel/settings"
       ]
     },
     {
-      "id": "counsel.AGT-3",
-      "text": "An answer streams into the chat as the model writes it."
-    },
-    {
-      "id": "counsel.AGT-4",
+      "id": "counsel.AGT-2",
       "text": "The user can stop the agent at any point of an answer; what it wrote so far stays in the chat, and so do changes it already made, with their undo.",
       "related": [
         "#counsel.ACT-5"
       ]
     },
     {
-      "id": "counsel.AGT-5",
+      "id": "counsel.AGT-3",
       "text": "The agent makes at most `counsel.max-steps` tool calls for one answer, then answers with what it found."
     },
     {
-      "id": "counsel.AGT-6",
+      "id": "counsel.AGT-4",
       "text": "A request to OpenRouter that fails says why in plain words, telling apart a key that isn't accepted, credit that has run out, a rate limit, a model that isn't available and no network, and says what to do about it."
-    },
-    {
-      "id": "counsel.AGT-7",
-      "text": "The app sends nothing to OpenRouter except to answer a message the user sent, or to title its chat.",
-      "related": [
-        "#counsel.CHT-4",
-        "#counsel.SET-10"
-      ]
     }
   ],
   "values": [
