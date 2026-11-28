@@ -40,6 +40,10 @@
     {
       "id": "counsel.CHT-8",
       "text": "The chat renders the common text formats the agent answers in, such as Markdown, instead of showing their markup."
+    },
+    {
+      "id": "counsel.CHT-9",
+      "text": "A chat is named by the agent, with a tool it has for that, or by the first message the user sent in it, truncated."
     }
   ]
 }
