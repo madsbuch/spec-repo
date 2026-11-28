@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Dial",
+  "summary": "The app's settings: one entry to them, set apart from the app's own menu, sections one level deep, and changes that apply as they are made.",
+  "shared": {
+    "id": "dial",
+    "logo": "dial/logo.png"
+  },
+  "description": "The settings are what the user can set about the app. They are grouped in sections: each product says what its sections are, and a part it uses can add a section of its own.\n\nThe entry to the settings sits apart from the app's own menu items, so the menu holds the places the app is for, and the settings never pass for one of them.",
+  "groundwork": [
+    "The app has something the user can set.",
+    "The app has a main menu that leads to its places: a bar along the top, a bar down the side, or tabs along the bottom.",
+    {
+      "text": "The app's places are reached by address, so one can be opened by a link from anywhere in the app.",
+      "ways": [
+        "the router the app already has",
+        "a router added under the main menu, with an address for each place"
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "id": "dial.US-1",
+      "as": "someone looking for a setting",
+      "want": "the settings to be in the same place in every app",
+      "soThat": "I don't have to hunt for them",
+      "requirements": [
+        "#dial.ENT-1",
+        "#dial.ENT-2",
+        "#dial.ENT-3",
+        "#dial.ENT-4",
+        "#dial.ENT-5"
+      ]
+    },
+    {
+      "id": "dial.US-2",
+      "as": "someone changing a setting",
+      "want": "it to take effect as I change it",
+      "soThat": "I never lose a change by leaving without saving",
+      "requirements": [
+        "#dial.CHG-2",
+        "#dial.CHG-3"
+      ]
+    },
+    {
+      "id": "dial.US-3",
+      "as": "someone the app tells that something isn't set up",
+      "want": "to be taken straight to the setting",
+      "soThat": "I can fix it without searching for it",
+      "requirements": [
+        "#dial.SEC-9"
+      ]
+    },
+    {
+      "id": "dial.US-4",
+      "as": "someone in the middle of something",
+      "want": "to change a setting and be back where I was",
+      "soThat": "a setting never costs me my place",
+      "requirements": [
+        "#dial.ENT-7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "dial.ENT-1",
+      "text": "The app has one entry to its settings in its main menu, named \"Settings\"."
+    },
+    {
+      "id": "dial.ENT-2",
+      "text": "In a menu along the top, the entry sits at the opposite end from the app's own menu items."
+    },
+    {
+      "id": "dial.ENT-3",
+      "text": "In a menu down the side, the entry sits at the bottom when the app's own menu items start at the top."
+    },
+    {
+      "id": "dial.ENT-4",
+      "text": "With tabs along the bottom, the entry is not a tab: it sits in the top corner opposite the screen's title, on each screen the tabs lead to."
+    },
+    {
+      "id": "dial.ENT-5",
+      "text": "On macOS, the app menu's \"Settings…\" item and ⌘, open the settings; on Windows and Linux, Ctrl+, does. They lead to the same settings as the entry, and are not a second one."
+    },
+    {
+      "id": "dial.ENT-6",
+      "text": "While the settings are open, their entry shows as the current place, and none of the app's own menu items does."
+    },
+    {
+      "id": "dial.ENT-7",
+      "text": "Leaving the settings returns the user to where they were when they opened them."
+    },
+    {
+      "id": "dial.ENT-8",
+      "text": "The settings are a place of the app, not a dialog: they open where the app's places open, and the main menu stays."
+    }
+  ]
+}

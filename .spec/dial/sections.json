@@ -1,0 +1,66 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Sections",
+  "summary": "Settings grouped in sections, one level deep, each with an address of its own.",
+  "order": 1,
+  "description": "A section groups the settings that belong together, under a name that says what they are about. The product says what its sections are; a part it uses can add one of its own.",
+  "requirements": [
+    {
+      "id": "dial.SEC-1",
+      "text": "With one section, the settings show it directly, with no list of sections."
+    },
+    {
+      "id": "dial.SEC-2",
+      "text": "With more than one section, the settings list the sections by name, and each section is a page of its own."
+    },
+    {
+      "id": "dial.SEC-3",
+      "text": "The settings are one level deep: a section can group its settings under headings, but nothing in it leads on to a page of its own."
+    },
+    {
+      "id": "dial.SEC-4",
+      "text": "A part can add a section of its own to the settings without changing the others."
+    },
+    {
+      "id": "dial.SEC-5",
+      "text": "The sections are in a fixed order: the app's general settings first, then the sections of its features and of the parts it uses."
+    },
+    {
+      "id": "dial.SEC-6",
+      "text": "Where the window is wide enough, the list of sections stays beside the open section, which is marked in it."
+    },
+    {
+      "id": "dial.SEC-7",
+      "text": "Where it isn't, the settings open on the list of sections; a section opens in its place, and back leads to the list.",
+      "related": [
+        "#dial.SEC-6"
+      ]
+    },
+    {
+      "id": "dial.SEC-8",
+      "text": "On a wide window, the settings open on the first section, unless a link opened a section of its own."
+    },
+    {
+      "id": "dial.SEC-9",
+      "text": "Each section has an address of its own, so the app can link to it from anywhere, such as from a message saying that something isn't set up."
+    },
+    {
+      "id": "dial.SEC-10",
+      "text": "The settings show the app's name, version and build: at the foot of the list of sections, or at the foot of the only section."
+    },
+    {
+      "id": "dial.SEC-11",
+      "text": "With more than `dial.search-sections` sections, the settings can be searched by the names and descriptions of their settings, and a result opens its section at that setting.",
+      "level": "should"
+    }
+  ],
+  "values": [
+    {
+      "id": "dial.search-sections",
+      "type": "number",
+      "value": 8,
+      "unit": "sections",
+      "description": "How many sections the settings can have before they need a search."
+    }
+  ]
+}

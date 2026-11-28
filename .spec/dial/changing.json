@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/madsbuch/better-github/main/schema/spec.schema.json",
+  "title": "Changing a setting",
+  "summary": "Changes apply at once, unless they must be checked; what loses data comes last and is confirmed.",
+  "order": 2,
+  "requirements": [
+    {
+      "id": "dial.CHG-1",
+      "text": "Each setting shows its name and the value in effect; one whose effect its name doesn't make plain says it in a line under it."
+    },
+    {
+      "id": "dial.CHG-2",
+      "text": "A change that needs no check, such as a switch or a choice, applies at once, with no Save button."
+    },
+    {
+      "id": "dial.CHG-3",
+      "text": "A setting that must be checked before it can be used, such as a key for a service, is saved explicitly, and the settings then say beside it whether it was accepted and, if not, why."
+    },
+    {
+      "id": "dial.CHG-4",
+      "text": "A change that can't be applied says why beside the setting, which goes on showing the value still in effect."
+    },
+    {
+      "id": "dial.CHG-5",
+      "text": "An action that loses data or can't be undone, such as deleting data, sits last in its section, set apart from the settings, and happens only once the user confirms it, having been told what will be lost."
+    },
+    {
+      "id": "dial.CHG-6",
+      "text": "A setting that was changed can be put back to its default.",
+      "level": "should"
+    },
+    {
+      "id": "dial.CHG-7",
+      "text": "Everything in the settings can be reached and used from the keyboard."
+    }
+  ]
+}
